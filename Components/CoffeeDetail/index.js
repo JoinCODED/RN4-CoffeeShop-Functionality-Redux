@@ -9,7 +9,6 @@ import {
   Left,
   Body,
   Right,
-  Icon,
   List,
   ListItem,
   Picker,
@@ -19,46 +18,31 @@ import {
 // Style
 import styles from "./styles";
 
-class CoffeeDetail extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      drink: "Coffee",
-      option: "Small"
-    };
-  }
+// Components
+import CartButton from "../CartButton";
 
+class CoffeeDetail extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.getParam("shop", {}).name,
-    headerRight: (
-      <Button
-        light
-        transparent
-        onPress={() => navigation.navigate("CoffeeCart")}
-      >
-        <Text>
-          {"3 "}
-          <Icon
-            type="FontAwesome"
-            name="coffee"
-            style={{ color: "white", fontSize: 15 }}
-          />
-        </Text>
-      </Button>
-    )
+    headerRight: <CartButton />
   });
 
-  changeDrink(value) {
+  state = {
+    drink: "Coffee",
+    option: "Small"
+  };
+
+  changeDrink = value => {
     this.setState({
       drink: value
     });
-  }
+  };
 
-  changeOption(value) {
+  changeOption = value => {
     this.setState({
       option: value
     });
-  }
+  };
 
   render() {
     const coffeeshop = this.props.navigation.getParam("shop", {});
@@ -84,7 +68,7 @@ class CoffeeDetail extends Component {
                 mode="dropdown"
                 style={{ width: 150 }}
                 selectedValue={this.state.drink}
-                onValueChange={this.changeDrink.bind(this)}
+                onValueChange={this.changeDrink}
               >
                 <Picker.Item label="Coffee" value="Coffee" />
                 <Picker.Item label="Lattee" value="Lattee" />
@@ -97,7 +81,7 @@ class CoffeeDetail extends Component {
                 mode="dropdown"
                 style={{ width: 150 }}
                 selectedValue={this.state.option}
-                onValueChange={this.changeOption.bind(this)}
+                onValueChange={this.changeOption}
               >
                 <Picker.Item label="Small" value="Small" />
                 <Picker.Item label="Medium" value="Medium" />
