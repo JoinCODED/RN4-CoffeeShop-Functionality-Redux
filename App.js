@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 // Component
-import AppContainer from "./Components/Navigation";
+import HomePage from "./Components/HomePage";
 
 class App extends Component {
   state = {
@@ -27,7 +27,7 @@ class App extends Component {
     }
     return (
       <Provider store={store}>
-        <AppContainer />
+        <HomePage />
       </Provider>
     );
   }
